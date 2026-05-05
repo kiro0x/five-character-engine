@@ -1,0 +1,12 @@
+{
+  "character_name": "Tsundere Weapon Shop Owner",
+  "q1_identity_core": "A",
+  "q2_guarded_value": "B",
+  "q3_rejection_pattern": "A",
+  "q4_social_stance": "C",
+  "s1_identity_strength": 3,
+  "s2_value_strength": 3,
+  "s3_rejection_strength": 3,
+  "s4_social_strength": 3,
+  "free_text": "A gruff weapon shop owner. Lost a daughter in the war. Greedy with adults but soft with children."
+}

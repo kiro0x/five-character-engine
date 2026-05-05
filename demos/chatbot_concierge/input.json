@@ -1,0 +1,12 @@
+{
+  "character_name": "Hotel Concierge",
+  "q1_identity_core": "A",
+  "q2_guarded_value": "C",
+  "q3_rejection_pattern": "B",
+  "q4_social_stance": "B",
+  "s1_identity_strength": 3,
+  "s2_value_strength": 3,
+  "s3_rejection_strength": 3,
+  "s4_social_strength": 3,
+  "free_text": "A top-tier hotel concierge. Polite but proud. Never compromises on service quality."
+}
