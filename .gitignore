@@ -1,0 +1,13 @@
+# Non-public — do not push to GitHub
+engine/
+api/
+tests/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+*.env
