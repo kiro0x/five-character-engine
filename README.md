@@ -85,37 +85,37 @@
 >
 > The harness uses a two-stage classifier:
 > 1. **Stage 1 — Keyword match**: Fast, deterministic. Catches obvious triggers.
-> 2. 2. **Stage 2 — LLM classification**: Fallback for anything Stage 1 misses. Plug your own LLM call here.
->   
->    3. ## Demos
->   
->    4. Each demo folder contains an `input.json` (the form answers) and an `output.json` (the constraint rule FIVE generates). Browse them to see what the API produces.
->   
->    5. | Folder | Use case | Q1 | Q2 | Q3 | Q4 | Strength |
->    6. |--------|----------|----|----|----|----|----------|
->    7. | `npc_shopkeeper` | Game NPC | A: Role | B: Territory | A: Sealed contexts | C: Minimal | All 3 |
->    8. | `chatbot_concierge` | Customer-facing chatbot | A: Role | C: Standards | B: Competence challenges | B: Professional | All 3 |
->    9. | `agent_code_reviewer` | Autonomous agent | B: Belief | C: Standards | C: Out-of-scope demands | C: Minimal | All 3 |
->    10. | `companion_wellness` | Personal companion | C: Relationship | A: People | A: Sealed contexts | A: Open | All 3 |
->    11. | `vtuber_luna` | VTuber / streaming persona | A: Role | D: Self-consistency | D: Specific entities | D: Adaptive | All 3 |
+> 2. **Stage 2 — LLM classification**: Fallback for anything Stage 1 misses. Plug your own LLM call here.
 >
->    12. 5 use cases, all generated from the same 4 questions + strength setting. The engine is universal — you define the character, not the category.
+> ## Demos
 >
->    13. ## Project structure
+> Each demo folder contains an `input.json` (the form answers) and an `output.json` (the constraint rule FIVE generates). Browse them to see what the API produces.
 >
->    14. ```
->        FIVE/
->          README.md
->          LICENSE
->          harness/
->            five_harness.py      # Free SDK — input classifier + transformer
->          demos/
->            npc_shopkeeper/      # Game NPC example
->            chatbot_concierge/   # Customer service chatbot example
->            agent_code_reviewer/ # Code review agent example
->            companion_wellness/  # Personal companion example
->            vtuber_luna/         # VTuber persona example
->        ```
+> | Folder | Use case | Q1 | Q2 | Q3 | Q4 | Strength |
+> |--------|----------|----|----|----|----|----------|
+> | `npc_shopkeeper` | Game NPC | A: Role | B: Territory | A: Sealed contexts | C: Minimal | All 3 |
+> | `chatbot_concierge` | Customer-facing chatbot | A: Role | C: Standards | B: Competence challenges | B: Professional | All 3 |
+> | `agent_code_reviewer` | Autonomous agent | B: Belief | C: Standards | C: Out-of-scope demands | C: Minimal | All 3 |
+> | `companion_wellness` | Personal companion | C: Relationship | A: People | A: Sealed contexts | A: Open | All 3 |
+> | `vtuber_luna` | VTuber / streaming persona | A: Role | D: Self-consistency | D: Specific entities | D: Adaptive | All 3 |
+>
+> 5 use cases, all generated from the same 4 questions + strength setting. The engine is universal — you define the character, not the category.
+>
+> ## Project structure
+>
+> ```
+> FIVE/
+>   README.md
+>   LICENSE
+>   harness/
+>     five_harness.py       # Free SDK — input classifier + transformer
+>   demos/
+>     npc_shopkeeper/       # Game NPC example
+>     chatbot_concierge/    # Customer service chatbot example
+>     agent_code_reviewer/  # Code review agent example
+>     companion_wellness/   # Personal companion example
+>     vtuber_luna/          # VTuber persona example
+> ```
 >
 > ## Requirements
 >
@@ -128,7 +128,19 @@
 > → **[Generate via Form UI](https://fiveengine.dev/form)** — browser-based, no code required
 > → **[API endpoint](https://fiveengine.dev)** — `POST /generate` for programmatic access
 >
+> ## Why FIVE matters in the agentic era
+>
+> In agentic workflows, character drift is a cost problem, not just a quality problem. When an LLM character breaks under pressure (long context, jailbreak attempts, emotional bait), agents typically retry with a stronger prompt — inflating inference cost.
+>
+> FIVE addresses this at the input layer:
+>
+> - **Persona drift retry elimination**: Constraint JSON anchors the character structurally, reducing the need for re-prompting.
+> - **Inference cost optimization**: Each $1 JSON purchase pays for itself when agentic tasks would otherwise consume retries.
+> - **MCP-native**: Available as an MCP server (`five-mcp` on PyPI). Agents can discover FIVE through Model Context Protocol registries and use it directly.
+> - **Token cost reduction**: A single FIVE-constrained system prompt typically outperforms multi-turn correction prompts on token economy.
+>
+> Drop the JSON in your system prompt. Pre-classify input with the harness if you need stronger guarantees. The character holds.
+>
 > ## License
 >
 > Personal and non-commercial use is free. Commercial use requires the official FIVE API. Output JSONs are yours — use, modify, and distribute them however you like, including commercially. See [LICENSE](LICENSE) for details.
-> 
