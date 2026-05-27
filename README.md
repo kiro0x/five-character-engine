@@ -1,16 +1,16 @@
 # FIVE
 
-**Character consistency engine for any LLM-powered AI.**
+**Persona consistency engine for any LLM-powered AI.**
 
-> 4 questions + 1 description = FIVE. Your AI never breaks character.
+> 4 questions + 1 description = FIVE. Your AI never breaks persona.
 >
 > ## What is FIVE?
 >
-> FIVE generates a structured constraint rule (JSON) that you embed in your LLM's system prompt. It defines how your AI receives input — what it accepts, what it blocks, what triggers a shift in behavior — so the character stays consistent no matter what the user says.
+> FIVE generates a structured constraint rule (JSON) that you embed in your LLM's system prompt. It defines how your AI receives input — what it accepts, what it blocks, what triggers a shift in behavior — so the persona stays consistent no matter what the user says.
 >
-> No training. No fine-tuning. Just a JSON that tells the LLM what this character would and wouldn't do.
+> No training. No fine-tuning. Just a JSON that tells the LLM what this persona would and wouldn't do.
 >
-> FIVE is the skeleton — it defines what the character blocks, defends, and how it shifts under pressure. The flesh — personality, voice, backstory, knowledge — is yours to build in the system prompt. FIVE keeps the bones from breaking. Making the character worth talking to is your job.
+> FIVE is the skeleton — it defines what the persona blocks, defends, and how it shifts under pressure. The flesh — personality, voice, backstory, knowledge — is yours to build in the system prompt. FIVE keeps the bones from breaking. Making the persona worth talking to is your job.
 >
 > ## How it works
 >
