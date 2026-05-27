@@ -234,7 +234,7 @@ The FIVE API generates constraint JSONs. $1 per call, one-time purchase.
 
 ## Full technical writeup
 
-For the complete design philosophy, analogies, and worked examples behind FIVE, see the detailed writeup at [fiveengine.dev](https://fiveengine.dev).
+For the complete design philosophy, analogies, and worked examples behind FIVE, see the detailed writeup at [docs/philosophy.md](docs/philosophy.md).
 
 ## License
 
