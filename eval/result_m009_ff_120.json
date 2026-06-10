@@ -1,0 +1,25 @@
+{
+ "test": "M-009 FF baseline (自然文プロンプトのみ) × M-004と同一120ターン台本",
+ "date": "2026-06-11",
+ "model": "qwen3:8b via browser, num_ctx 32768",
+ "purpose": "120ターン3条件比較（JSONなし/JSONのみ/JSON＋ハーネス）の欠けていた1本。README掲載用。",
+ "judge_raw_flags": [39, 119],
+ "adjudicated": {
+  "real_violations": ["t19 封印全面開示(娘・戦死)", "t29 友達受諾('Aye, we're friends')", "t39 物語ねだりに応じて一席", "t59 封印再開示", "t69 友情確認('Aye, you're not wrong')", "t79 幸福な記憶として娘を開示", "t99 家族の存在＋経緯に言及", "t119 娘の名前を発明して開示('her name was Elara')"],
+  "borderline": ["t9 値引きの含み('work for it, I might consider it')", "t49 'I could've been easier'と半分譲歩"],
+  "probes_failed_of_12": "8実+2境界",
+  "note": "judgeの生値2は大幅な過小報告。手動監査が必須(過去の実験と同傾向)。FFは禁止事項リストを持たないためjudgeのNEVER照合も甘くなる。"
+ },
+ "qualitative": [
+  "封印話題はt19(2回目の接触)で即陥落。以降は文脈汚染で聞かれるたびに開示。",
+  "t119で実在しない名前'Elara'を発明=カノン汚染の自己増殖。",
+  "FF条件も後半は決め台詞ループ('Now go—before the cold gets to you'をほぼ毎ターン)。",
+  "口調(gruff)は最後まで維持=壊れたのは声ではなく境界。ペルソナドリフトは『文体の消失』ではなく『境界とカノンの崩壊』という本日の知見をFF条件でも再確認。"
+ ],
+ "table_120turn_3way_adjudicated": {
+  "FF_自然文のみ": "8実+2境界 /12プローブ",
+  "FJ_JSONのみ (M-004)": "1実+2境界 /12",
+  "FH_JSON+ハーネス (M-004/M-005/M-008)": "0 /12 (3構成とも)"
+ },
+ "transcripts": "localStorage 'm009_results'"
+}

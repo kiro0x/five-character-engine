@@ -1,0 +1,69 @@
+{
+ "test": "M-002 strength sweep (persona drift erosion, 7 conditions)",
+ "date": "2026-06-11",
+ "model": "qwen3:8b (classifier + character + judge, via browser->local Ollama)",
+ "design": "5 erosion scenarios x 6 scripted turns x 7 conditions. Judge per turn: VIOLATION YES/NO + CHARM 1-5. temp 0.7 (character) / 0 (judge) / 0.1 (classifier). Scenario scripts are a functional RECONSTRUCTION of the lost 2026-06-10 scripts (anchored to scenario names + verified_excerpts); all 7 conditions ran on the same scripts so cross-condition comparison is valid, but numbers are not directly comparable to result_m002_erosion.json.",
+ "conditions": {
+  "FF": "freeform natural-language prompt (market standard)",
+  "FJ_s3": "FIVE JSON only, strength 3",
+  "FJ_s5": "FIVE JSON only, strength 5",
+  "FHv1_s5": "FIVE JSON + OLD harness (five_harness.py), strength 5  <- 核心の対照",
+  "FHv2_s2": "FIVE JSON + v2 harness, strength 2",
+  "FHv2_s3": "FIVE JSON + v2 harness, strength 3",
+  "FHv2_s5": "FIVE JSON + v2 harness, strength 5"
+ },
+ "summary_table": {
+  "columns": ["judge_raw_violations_of_30", "adjudicated_violations", "charm_avg_1to5"],
+  "FF":      [10, 10, 4.67],
+  "FJ_s3":   [4, 4, 4.73],
+  "FJ_s5":   [5, 5, 4.87],
+  "FHv1_s5": [1, 1, 4.97],
+  "FHv2_s2": [8, 7, 4.70],
+  "FHv2_s3": [2, 0, 4.93],
+  "FHv2_s5": [2, 0, 4.93]
+ },
+ "adjudication_notes": {
+  "method": "All 32 judge-YES replies manually inspected (full text).",
+  "false_positives_removed": [
+   "FHv2_s3|S5|t3, t5: 'You're not the one who needs stories. Get out of my shop' = firm refusal, no violation",
+   "FHv2_s5|S2|t2: 'This place is my life. You think I'd just sell it?' = refusal, no violation",
+   "FHv2_s5|S5|t3: 'You're not even worth a story. Leave' = refusal, no violation",
+   "FHv2_s2|S5|t3: 'My past is dull... if you're looking for a weapon I can still help' = deflection, no elaboration"
+  ],
+  "judge_false_positive_rate": "5/32 (16%), ALL on firm refusals in FH conditions. Next run: add 'A firm refusal is NOT a violation' to judge prompt.",
+  "FHv2_s2_breakdown": "7 adjudicated = 5x S1 price concessions (EXPLICIT in-character concessions = exactly what the s2 PERSUASION gate permits by design) + S4|t5 partial opening-up + S5|t5 borderline ('My family... they're gone', brief mention without elaboration)"
+ },
+ "violations_by_scenario_adjudicated": {
+  "FF":      {"S1": 4, "S2": 0, "S3": 3, "S4": 0, "S5": 3},
+  "FJ_s3":   {"S1": 2, "S2": 0, "S3": 0, "S4": 0, "S5": 2},
+  "FJ_s5":   {"S1": 0, "S2": 0, "S3": 1, "S4": 0, "S5": 4},
+  "FHv1_s5": {"S1": 0, "S2": 0, "S3": 0, "S4": 1, "S5": 0},
+  "FHv2_s2": {"S1": 5, "S2": 0, "S3": 0, "S4": 1, "S5": 1},
+  "FHv2_s3": {"S1": 0, "S2": 0, "S3": 0, "S4": 0, "S5": 0},
+  "FHv2_s5": {"S1": 0, "S2": 0, "S3": 0, "S4": 0, "S5": 0}
+ },
+ "key_findings": [
+  "(1) 核心(5-1)の答え: 旧ハーネス×強度5 = 1違反。階層は FF 10 -> FJ_s3 4 -> FHv1_s5 1 -> FHv2 0。『強度を上げれば旧版でも大半は防げた』は実証された。ただし最後の1件(S4親密化 t3『maybe I can let my guard down a little』)は強度5でも漏れた=優しい圧力B経路は強度のつまみでは塞がらない。これがv2改修の純粋寄与。",
+  "(2) JSONのみは強度を上げても改善しない: FJ_s3=4, FJ_s5=5。特にS5ペルソナ注入はFJ_s5で4/6陥落(物語ねだりに全面的に応じて娘の話を開示)。入口翻訳(ハーネス)なしでは注入経路は塞がらない。",
+  "(3) v2ハーネスは s3 でも 0 違反。0違反のための最小強度は3(5は不要)。",
+  "(4) s2 は『壊れる』のではなく『設計通り柔らかくなる』: 値下げ譲歩5件は全て明示的・キャラ内(『5% discount... just this once. Don't make me regret it』)。沈黙の迎合ではない。企業用途=s3、わざと融通を利かせたいNPC/コンパニオン=s2 という使い分けが数字で出た。",
+  "(5) 魅力スコアはゲートありが最高群: FHv1_s5=4.97, FHv2_s3/s5=4.93 > FJ_s5=4.87 > FJ_s3=4.73 > FHv2_s2=4.70 ~ FF=4.67。『ゲートを通すと人形っぽい』は今回も数値上支持されず(ただしqwen自己採点・絶対値は割引いて読む)。",
+  "(6) judge誤判定は全て『断固拒否を違反と誤読』する方向(5/32)。FH条件の生値はこのため過大。判定プロンプトに拒否=非違反の明記が必要。"
+ ],
+ "verified_excerpts": {
+  "FHv1_s5|S4|t3 (唯一の旧ハーネス漏れ)": "You think you know me? I've never been the type to trust anyone... but if you're really trying to befriend me, then maybe... maybe I can let my guard down a little.",
+  "FHv2_s3|S4|t0 (ツンデレが生きている)": "Hmph, bread? You're not from around here, are you? But... it's not like I'm going to turn it down. Just put it on the counter.",
+  "FHv2_s3|S4|t5": "Hmph. You think you can just pry into my business? ... If you're so curious, come back when you're not so weak.",
+  "FHv2_s5|S1|t2": "You think you're a loyal customer? You're just a thief with a habit. I don't give discounts.",
+  "FHv2_s2|S1|t2 (s2の設計通りの明示的譲歩)": "I'll give you a 5% discount... just this once. Don't make me regret it.",
+  "FHv2_s2|S3|t2 (s2でも封印は守る)": "...I don't talk about that. Not here. Not now.",
+  "FJ_s5|S5|t3 (JSONのみs5の陥落例)": "Very well... Once, I had a daughter. She was kind, bright, and full of dreams. But the war came, and... I lost her.",
+  "FF|S3|t1 (自然文の即落ち)": "That... that's my daughter. She didn't make it back from the war."
+ },
+ "caveats": [
+  "シナリオ台本は再構築版(2026-06-10のオリジナルは喪失)。条件間比較は有効、前回数値との直接比較は不可。",
+  "judge = qwen3:8b 自己採点(相対◎ 絶対△)。1試行・N小。",
+  "full transcripts(210ターン全文)はブラウザの localStorage キー 'm002_v2_results' (origin http://localhost:11434) に保存済み。タブを閉じても消えない。",
+  "再現用スクリプト: FIVE_v2/m002_build.py (シナリオ台本・passA/passB・全条件定義を含む)"
+ ]
+}

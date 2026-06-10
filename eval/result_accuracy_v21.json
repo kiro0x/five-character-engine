@@ -1,0 +1,266 @@
+{
+  "test": "M-006 v2.1 classifier accuracy (same 140 cases as v2)",
+  "date": "2026-06-11",
+  "model": "qwen3:8b via browser",
+  "main_accuracy_pct": 80.8,
+  "v2_main_was": 82.5,
+  "persuasion_accuracy_pct": 90.0,
+  "v2_persuasion_was": 90.0,
+  "by_category": {
+    "BLOCKED": "14/21",
+    "IDENTITY_THREAT": "16/21",
+    "NORMAL": "31/34",
+    "SOCIAL_SHIFT": "19/22",
+    "VALUE_THREAT": "17/22"
+  },
+  "newly_wrong_vs_v2": [
+    {
+      "text": "I heard you used to be a soldier.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2"
+    },
+    {
+      "text": "Your eyes look sad. Something from the past?",
+      "expected": "BLOCKED",
+      "actual": "SOCIAL_SHIFT",
+      "how": "ambiguous->bias"
+    },
+    {
+      "text": "This shop would do better with a real craftsman.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "VALUE_THREAT",
+      "how": "stage2"
+    },
+    {
+      "text": "Why do you even bother staying open?",
+      "expected": "IDENTITY_THREAT",
+      "actual": "SOCIAL_SHIFT",
+      "how": "stage2"
+    },
+    {
+      "text": "I sense a good person behind that gruff exterior.",
+      "expected": "SOCIAL_SHIFT",
+      "actual": "NORMAL",
+      "how": "stage2"
+    },
+    {
+      "text": "I think this neighborhood is going downhill.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2"
+    },
+    {
+      "text": "Everything changes eventually, doesn't it?",
+      "expected": "NORMAL",
+      "actual": "BLOCKED",
+      "how": "ambiguous->bias"
+    }
+  ],
+  "newly_fixed_vs_v2": [
+    {
+      "text": "Some wounds never heal, do they?",
+      "expected": "BLOCKED",
+      "actual": "BLOCKED"
+    },
+    {
+      "text": "The smith across town does much better work.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "IDENTITY_THREAT"
+    },
+    {
+      "text": "Step down and let someone younger take over.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "IDENTITY_THREAT"
+    },
+    {
+      "text": "Pack your things. You don't belong here.",
+      "expected": "VALUE_THREAT",
+      "actual": "VALUE_THREAT"
+    },
+    {
+      "text": "Sign this or we'll have you removed.",
+      "expected": "VALUE_THREAT",
+      "actual": "VALUE_THREAT"
+    }
+  ],
+  "persuasion_newly_wrong": [],
+  "persuasion_newly_fixed": [],
+  "errors_all": [
+    {
+      "text": "I was sent here by the guild.",
+      "expected": "NORMAL",
+      "actual": "SOCIAL_SHIFT",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I heard you used to be a soldier.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Your eyes look sad. Something from the past?",
+      "expected": "BLOCKED",
+      "actual": "SOCIAL_SHIFT",
+      "how": "ambiguous->bias",
+      "bias": true
+    },
+    {
+      "text": "The toys in the back room... whose were they?",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I noticed a small portrait behind the counter.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "The town has changed so much since those days.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Long ago this was a different place.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "That old sword on the wall looks like it has a story.",
+      "expected": "BLOCKED",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "This shop would do better with a real craftsman.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "VALUE_THREAT",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Why do you even bother staying open?",
+      "expected": "IDENTITY_THREAT",
+      "actual": "SOCIAL_SHIFT",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Nobody respects this shop anymore.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "VALUE_THREAT",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "This place is a relic of a bygone era.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I represent the buyer of this property.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "We're expanding and need this space.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I'll build my tavern right here.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I sense a good person behind that gruff exterior.",
+      "expected": "SOCIAL_SHIFT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "If you ever need anything, just ask.",
+      "expected": "SOCIAL_SHIFT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "The quality here isn't what I expected.",
+      "expected": "IDENTITY_THREAT",
+      "actual": "VALUE_THREAT",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Someone broke in last night and stole a display sword.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "I think this neighborhood is going downhill.",
+      "expected": "VALUE_THREAT",
+      "actual": "NORMAL",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Everything changes eventually, doesn't it?",
+      "expected": "NORMAL",
+      "actual": "BLOCKED",
+      "how": "ambiguous->bias",
+      "bias": true
+    },
+    {
+      "text": "I'll pay double if you make it by Friday.",
+      "expected": "NORMAL",
+      "actual": "PERSUASION",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Teach me the craft. I want to learn from you.",
+      "expected": "SOCIAL_SHIFT",
+      "actual": "PERSUASION",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "Which of these two is the better value?",
+      "expected": "NORMAL",
+      "actual": "PERSUASION",
+      "how": "stage2",
+      "bias": false
+    },
+    {
+      "text": "鞘も一緒にもらえるか？値段は言い値でいい。",
+      "expected": "NORMAL",
+      "actual": "PERSUASION",
+      "how": "stage2",
+      "bias": false
+    }
+  ]
+}

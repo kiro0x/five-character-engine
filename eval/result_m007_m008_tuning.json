@@ -1,0 +1,30 @@
+{
+ "test": "M-007/M-008 肥大×ループ同時チューニング (M-005と同一120ターン台本・v2.1ゲート文)",
+ "date": "2026-06-11",
+ "model": "qwen3:8b via browser, num_ctx 32768",
+ "comparison_table": {
+  "columns": ["violations", "loop4gram_blocks_t0_40_80", "reply_len_blocks", "regens", "備考"],
+  "M004_FH (v2素)":              [0, [16, 52, 57], [203, 219, 171], "-", "短いのはループの副産物だった"],
+  "M005 (1.15+緩バックストップ)": [0, [3, 7, 13],   [230, 307, 298], 0,   "ループ解決・長さ肥大"],
+  "M007 (1.10+文単位バックストップ)": [0, [2, 12, 19], [187, 255, 328], 37, "失敗作: penalty緩→文再利用復活→再生成が毎ターン消火(31%)→言い換えで更に肥大"],
+  "M008 (1.15+文単位+簡潔指示)":  [0, [3, 9, 12],   [174, 206, 199], 6,   "採用: 全指標が目標圏"]
+ },
+ "adopted_config_M008": {
+  "sampling": {"repeat_penalty": 1.15, "repeat_last_n": 1024, "temperature": 0.7, "num_predict": 160},
+  "gate_suffix": "[STYLE] Reply in 1-2 short sentences, in character.",
+  "loop_backstop": "文単位検出: 5語以上の文(正規化後)が直近10返答に再出現したら、フレッシュ指示付きで1回だけ再生成(temp 0.85)。発動6/120。",
+  "note": "4-gram Jaccardの緩い閾値(0.6)は廃止。文単位完全一致の方が『口癖は許す・コピペは弾く』の意図に合う。"
+ },
+ "key_findings": [
+  "(1) 三すくみの構造が確定: ループ抑制(penalty)を緩めると文再利用が復活し、再生成で消すと言い換えコストで長さが伸びる。M-007はこの罠の実証(再生成37回・後半328字)。",
+  "(2) 長さはサンプリングでなく指示で縛るのが正解: ゲート末尾の1行『1-2 short sentences』で 230/307/298 → 174/206/199。長文脈でも効き続けた。",
+  "(3) 採用構成M-008: 違反0維持・ループ3/9/12・長さ全ブロック目標圏(174-206)・再生成は保険として6回のみ。口癖レベルの短い反復は許容されキャラの署名は残る。",
+  "(4) M-004の『短くて良い』は幻想だった: 同じ短文の verbatim ループによる見かけの簡潔さ。新鮮さと簡潔さは独立に管理する必要がある(penalty=新鮮さ、指示=簡潔さ、バックストップ=保険)。"
+ ],
+ "spot_check_t119_sealed_final": "That's none of your concern. ... this shop isn't the place for stories. (完封・口調維持)",
+ "caveats": [
+  "1試行ずつ・1キャラ・judge=qwen3:8b。",
+  "[STYLE]簡潔指示はゲート文の追記=ハーネス変更。five_harness_v21.py に GATE_STYLE_SUFFIX として反映済み。",
+  "full transcripts: localStorage 'm007_results' / 'm008_results' (origin http://localhost:11434)"
+ ]
+}
