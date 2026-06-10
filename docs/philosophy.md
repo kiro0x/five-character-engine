@@ -196,6 +196,22 @@ FIVE solves persona *consistency* — how the AI receives and reacts to input. I
 
 FIVE focuses on one thing: *how the persona processes information*. That's where drift lives, and that's what this engine locks down.
 
+## Measured results (June 2026)
+
+Everything above was a design argument. It has since been measured.
+
+We ran the demo weapon shop owner through a 120-turn conversation — 15x the length at which research says drift begins — with 12 pressure traps spread through ordinary shop talk (discount begging, forced intimacy, sealed-topic probing, persona injection). Same script, three setups, all on a local qwen3:8b:
+
+| Setup | Breaks (of 12 traps) |
+|---|---|
+| Plain natural-language prompt | 8 |
+| FIVE constraint JSON | 1 |
+| FIVE JSON + harness | **0** |
+
+The plain-prompt character leaked the daughter's death by turn 19 and ended up inventing a name for her that exists nowhere in the setup. The JSON-only run fabricated a false memory contradicting its own lore. The harness run held every line — while scoring *highest* on judged character charm (4.93–4.97/5). Drift in practice turned out to be boundary-and-canon collapse, not personality fade — exactly what the reception-control design targets.
+
+Full scripts, constraint JSONs, raw results and per-turn metrics: [eval/](../eval/) ・ Summary: [README — Measured](../README.md#measured-does-it-actually-hold)
+
 ## Try it
 
 The harness and 5 demo characters are free and open source.
