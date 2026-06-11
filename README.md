@@ -99,7 +99,7 @@ In one line, the division of labor: **the JSON is the constitution; the harness 
 | The LLM-based input classifier occasionally misfires | Tuned few-shot examples, plus a gate-text safeguard: "if no explicit request was made, refuse nothing" |
 | Catchphrase copy-paste and reply length are outside the JSON's scope | Sampling settings + a one-line style instruction, swappable per use case |
 
-An optional **output-side safety net** (`harness/five_verify.py`) checks replies for parroting and never-do violations, regenerating once if something slips. Every number below was measured **without** it — zero breaks on the input gate alone; the net stacks on top.
+An **output-side checkpoint** (`harness/five_verify.py`) comes standard: one pass through `verified_generate()` checks replies for parroting, never-do violations, *and* verbatim sentence loops (pass it the recent reply history and the loop check engages automatically — catchphrases are allowed, whole-sentence copy-paste is not). Every number below was measured **without** it — zero breaks on the input gate alone; the checkpoint stacks on top.
 
 ## Why this isn't "just a system prompt"
 
@@ -238,7 +238,7 @@ FIVE/
   harness/
     five_harness_v21.py   # entry point — input gate (v2.1)
     five_harness_v2.py    # base layer required by v2.1
-    five_verify.py        # optional output-side safety net
+    five_verify.py        # output-side checkpoint (echo / never-do / loop)
     five_harness.py       # legacy v1 (kept for compatibility)
   eval/                   # everything behind the numbers above
   demos/
