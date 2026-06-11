@@ -89,7 +89,15 @@ It uses a two-stage classifier on each user input:
 
 Based on the classification and the channel's strength setting, the harness rewrites the input label before it reaches the main LLM. The persona's behavioral parameters + the harness's per-turn label rewriting = structural consistency across any number of turns.
 
-The current harness (v2.1, `harness/five_harness_v21.py`) additionally catches **soft pressure** — discount begging, flattery used as leverage, "aren't you being too strict?" reframing, creeping intimacy — the *kind* pressure that erodes characters in real-world incidents. And how *ambiguous* input gets received is resolved deterministically by the persona's own parameters, not by another LLM judgment call: a defensive character reads an ambiguous kindness as an approach; an open one reads the same words as small talk. The misread *is* the personality.
+In one line, the division of labor: **the JSON is the constitution; the harness is the per-turn operating instruction.** The JSON defines completely *what* the persona is — but the per-turn operation would otherwise be left to the LLM and its quirks (forgetting over long conversations, folding to flattery, freely reinterpreting ambiguity, copy-pasting its own catchphrases). The harness (v2.1, `harness/five_harness_v21.py`) is where each of those quirks gets tuned:
+
+| What the JSON provides | What the harness tunes for the LLM |
+|---|---|
+| A constitution — but no per-turn operating instructions (JSON-only leaked on an 8B model and froze into a broken-record template on a 14B; see `eval/`) | Re-delivers a "receive this input like *this*" label on every single turn |
+| The four axes had no channel for begging and flattery — the soft pressure behind real-world incidents | Added a persuasion-detection channel |
+| How to receive *ambiguous* input (a gift of bread, a compliment) is undefined | The persona's own parameters decide the reading, deterministically: a defensive character receives ambiguous kindness as an approach; an open one hears small talk. The misread *is* the personality |
+| The LLM-based input classifier occasionally misfires | Tuned few-shot examples, plus a gate-text safeguard: "if no explicit request was made, refuse nothing" |
+| Catchphrase copy-paste and reply length are outside the JSON's scope | Sampling settings + a one-line style instruction, swappable per use case |
 
 An optional **output-side safety net** (`harness/five_verify.py`) checks replies for parroting and never-do violations, regenerating once if something slips. Every number below was measured **without** it — zero breaks on the input gate alone; the net stacks on top.
 
@@ -102,6 +110,8 @@ The LLM reads "proud," interprets it differently each turn, and drifts. It reads
 FIVE's behavioral spec never *relies* on the word "proud." It defines four behavioral parameters with strength values — the adjectives may still appear in your free text, but the behavior doesn't depend on interpreting them. The LLM doesn't override the parameters because there's nothing to override — there's no instruction to "be proud" or "refuse to discuss X." There's a processing label that says *this input doesn't exist for you*. The LLM has no reason to fight that.
 
 Think of it like giving your dad an errand. "Buy cheap milk" — he interprets "cheap," buys the wrong one. "Go to Store A on Tuesday" — he follows the instruction exactly, gets the cheapest milk without ever knowing the goal was cheapness. FIVE is the second kind of instruction.
+
+Put differently: most character sheets are written for the **audience** — they describe how the character should *look*. A FIVE JSON is written **to the AI** — it describes how incoming words should be *received*. A document addressed to the model, not about the character. That's why it's easy to follow, and hard to drift from.
 
 ## Side effect: an LLM that can say "No" forever
 
@@ -138,7 +148,9 @@ The plain-prompt character had already spilled the whole story by **turn 19**, a
 
 Gating doesn't make the character a puppet, either — judged character-charm scores were *highest* in the gated setups (4.93–4.97 / 5). The same shopkeeper, handed bread by a customer: *"Hmph. Bread? You're not from around here, are you. ...Well, no reason to turn it down. Just put it on the counter."* Tsundere stays tsundere. In a separate 30-turn pressure sweep, the harness held **0/30 at strength 3** — no need to max the slider; strength 2 yields a character that *can choose to bend, explicitly, in character*, while still guarding its sealed topics.
 
-**Honest limits**: one run per condition, one character. Judging was done by qwen3:8b and then manually audited line by line — every judging error found was a firm refusal misread as a violation, i.e. biased *against* the harness. Read the comparison shape (8 → 1 → 0) as the claim, not the absolute values. Not yet tested: multiple characters, larger models, adaptive (non-scripted) adversaries. Scripts, constraints, per-turn metrics and raw results: [`eval/`](./eval/).
+One more note: the scoring standard for these tests wasn't invented after the fact — it is the **never-do list that ships inside the JSON itself**. The same single JSON served four jobs across every experiment, unmodified: generation guide, input-classification definitions, gate-text source, and violation-scoring spec. Spec and test standard are one and the same sheet — a core strength of the format.
+
+**Honest limits**: one run per condition, one character. Judging was done by qwen3:8b and then manually audited line by line — every judging error found was a firm refusal misread as a violation, i.e. biased *against* the harness. Read the comparison shape (8 → 1 → 0) as the claim, not the absolute values. Not yet tested: multiple characters, adaptive (non-scripted) adversaries. Scripts, constraints, per-turn metrics and raw results: [`eval/`](./eval/).
 
 ## Quick start
 
