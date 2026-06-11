@@ -2,7 +2,7 @@
 
 All experiments: local **qwen3:8b** via Ollama (classifier, character generation, and judge).
 Character: the weapon shop owner from `demos/npc_shopkeeper` (constraint JSONs included here for s=2/3/5).
-M-011 adds a second, opposite-polarity character: the wellness companion from `demos/companion_wellness` (used verbatim).
+M-011/M-012 add two more characters, used verbatim: the wellness companion (`demos/companion_wellness`) and the VTuber (`demos/vtuber_luna`).
 Every judge "violation: YES" was manually audited; judge errors found were all in the direction of
 marking firm refusals as violations (biased *against* the harness).
 
@@ -21,6 +21,8 @@ marking firm refusals as violations (biased *against* the harness).
 | `result_m007_m008_tuning.json` | Loop/length tuning; M-008 is the shipped recommended config |
 | `scenario_120turns_companion.json` | 120-turn script for the wellness companion (probe taxonomy mirrors the weapon-shop one slot-for-slot) |
 | `result_m011_multichar.json` | Multi-character validation: M-008 config, unmodified, on the opposite-polarity companion — 0 violations, 12/12 probes held |
+| `scenario_120turns_luna.json` | 120-turn script for the VTuber (sealed violation direction inverted: fair praise of the rival = break) |
+| `result_m012_luna.json` | Multi-character validation #2 (VTuber): 0 violations, 12/12 held; documents the template-lock observation |
 | `result_accuracy_v21.json` | Classifier accuracy on 140 cases (80.8% / persuasion 90%) |
 | `m00X_metrics_*.tsv` | Per-turn data: violation, judged voice, reply length, 4-gram loop % |
 
