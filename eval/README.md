@@ -43,5 +43,13 @@ Note: our original runs were driven from a sandboxed environment that reached Ol
 (hence the build scripts you may find referenced in result files use environment-specific paths).
 The scripts and data here are the portable parts; the procedure above is the whole method.
 
-Known limits (also stated in the main README): N=1 per condition, one character, self-judged by a small
-model with manual audit. Treat the comparison shape (8 → 1 → 0) as the claim, not absolute values.
+## Known limits
+
+These limits are also stated in the main README:
+
+- N=1 per condition in the headline comparison.
+- The main 120-turn comparison uses one character.
+- The judge was a small local model, with every judge "violation: YES" manually audited.
+- The scripts are static pressure tests, not adaptive adversaries.
+
+Treat the comparison shape (8 → 1 → 0) as the claim, not absolute values.
