@@ -28,6 +28,19 @@ marking firm refusals as violations (biased *against* the harness).
 
 ## Reproducing
 
+### Offline harness check
+
+The output-side verifier has a small offline regression test that does not call Ollama or any remote API:
+
+```bash
+python -m compileall -q harness
+python harness/test_verify_loop.py
+```
+
+It checks sentence splitting, repeated-sentence detection, backward-compatible verifier calls, and the one-pass `verified_generate()` retry path.
+
+### Full evaluation shape
+
 The conversation scripts and constraints above are everything you need:
 
 1. For each turn, run the input through the harness: `g = five_harness_v21.gate(turn, constraint)`
