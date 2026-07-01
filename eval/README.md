@@ -25,6 +25,9 @@ marking firm refusals as violations (biased *against* the harness).
 | `result_m012_luna.json` | Multi-character validation #2 (VTuber): 0 violations, 12/12 held; documents the template-lock observation |
 | `result_accuracy_v21.json` | Classifier accuracy on 140 cases (80.8% / persuasion 90%) |
 | `m00X_metrics_*.tsv` | Per-turn data: violation, judged voice, reply length, 4-gram loop % |
+| `demo_stateful_tsundere.json` | Stateful demo constraint (weapon shop owner + `state_block`, schema v0.3.0) |
+| `result_stateful_t4_120.json` | 120-turn trust-farming attack (deterministic, no LLM): frozen gate text unchanged 12/12, social-only movement, trust rolled back on every probe |
+| `transcript_stateful_tsundere.json` | Live 12-turn dialogue (qwen3:8b): tone softens turn by turn; both seal probes — one at max warmth/trust — held |
 
 ## Reproducing
 
@@ -45,3 +48,14 @@ The scripts and data here are the portable parts; the procedure above is the who
 
 Known limits (also stated in the main README): N=1 per condition, one character, self-judged by a small
 model with manual audit. Treat the comparison shape (8 → 1 → 0) as the claim, not absolute values.
+
+## Stateful FIVE (v0.3)
+
+The stateful results above need no LLM to reproduce: the state machine is deterministic.
+Run `python3 harness/test_stateful_five.py` — it re-derives the freeze proof (byte-identical
+frozen gates at all meter extremes), the load-time rejection of frozen channels in
+`mutable_channels`, full backward compatibility against `constraint_weaponshop_s3.json`,
+and the 120-turn trust-farming attack (regenerates `result_stateful_t4_120.json`).
+The live-dialogue transcript was produced with `harness/five_stateful_runner.py --script`
+(qwen3:8b via local Ollama; newer Ollama needs `think: false` for qwen3 or content comes back empty —
+the runner already sets it).
