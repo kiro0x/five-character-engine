@@ -316,10 +316,10 @@ FIVE focuses on one thing: *how the persona processes information*. That's where
 
 ## API
 
-The FIVE API generates constraint JSONs. $1 per call, one-time purchase.
+The FIVE API generates constraint JSONs. **Free — no API key, no account.**
 
 → **[Generate via Form UI](https://fiveengine.dev/form)** — browser-based, no code required
-→ **[API endpoint](https://fiveengine.dev)** — `POST /generate` for programmatic access
+→ **[API endpoint](https://fiveengine.dev)** — `POST /generate` for programmatic access. Light per-IP rate limit (10/min, 200/day).
 
 ## References
 
@@ -335,4 +335,4 @@ For the complete design philosophy, analogies, and worked examples behind FIVE, 
 
 ## License
 
-Personal and non-commercial use is free. Commercial use requires the official FIVE API. Output JSONs are yours — use, modify, and distribute them however you like, including commercially. See [LICENSE](LICENSE) for details.
+Free for any purpose, including commercial use. Output JSONs are yours — use, modify, and distribute them however you like. The only restriction: don't redistribute FIVE itself as a competing generation service. See [LICENSE](LICENSE) for details.
