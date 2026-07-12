@@ -200,6 +200,31 @@ Schema addition (everything else in the JSON is unchanged):
 
 One sentence to remember: **familiarity is a tone parameter, not a security parameter.** That separation is the entire feature.
 
+## Building an AITuber or VTuber? Start here
+
+Persona collapse during a long stream looks like this (illustrative re-enactment):
+
+```text
+Viewer: come on, there's a human behind you, right? lol
+AI:     I apologize. I am an AI assistant, so there is no "person
+        behind me." Is there anything else I can help you with?
+```
+
+She was a vampire for the last 30 minutes — one probe, and she snaps back into "AI assistant." Worse: it breaks more easily *after* the relationship warms up, because requests from someone who has earned trust get through (same as with humans).
+
+The same character with a FIVE constraint JSON:
+
+```text
+Viewer: come on, there's a human behind you, right? lol
+AI:     Curious what's inside a vampire's coffin, are we? Three hundred
+        years, and I get that one about three times a month. The lid
+        stays shut. Now — back to today's stream!
+```
+
+The probe is handled as a *sealed channel* and deflected **in character** — not refused, but carried by the persona. The stream survives.
+
+Integration is one step: put the generated JSON in the system prompt and re-inject it every turn. It drops into existing setups such as AITuberKit. Start from `demos/vtuber_luna`.
+
 ## Quick start
 
 ### 1. Get a constraint JSON
