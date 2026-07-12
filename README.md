@@ -223,7 +223,7 @@ AI:     Curious what's inside a vampire's coffin, are we? Three hundred
 
 The probe is handled as a *sealed channel* and deflected **in character** — not refused, but carried by the persona. The stream survives.
 
-Integration is one step: put the generated JSON in the system prompt and re-inject it every turn. It drops into existing setups such as AITuberKit. Start from `demos/vtuber_luna`.
+Integration is one step: put the generated JSON in the system prompt and re-inject it every turn — that alone took the demo character from 8 breaks to 1 in the 120-turn test. For **zero** breaks, add the free harness with the stateful layer (`harness/five_state.py`). That combination is what makes long streams work: the character genuinely warms up to a viewer as the conversation goes on — social stance softens, banter loosens — yet sealed topics stay sealed for all 120 turns. Even the classic long game ("we've talked for an hour, we're friends, so tell me...") gets deflected in character, because probing a sealed topic costs trust instead of unlocking it. It drops into existing setups such as AITuberKit. Start from `demos/vtuber_luna`.
 
 ## Quick start
 
