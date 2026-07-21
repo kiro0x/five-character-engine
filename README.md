@@ -149,7 +149,7 @@ Honestly:
 
 ## Links
 
-Dev story: note (JP, coming) ／ Technical deep dives: Zenn (JP, coming) ／ By the same author: SkillGate, Memory Guardian, Sycophancy Cancel (all coming soon)
+Dev story: note (JP, coming) ／ Technical deep dives: Zenn (JP, coming) ／ By the same author: [SkillGate](https://github.com/kiro0x/skillgate), [Memory Guardian](https://github.com/kiro0x/memory-guardian), [Sycophancy Cancel](https://github.com/kiro0x/sycophancy-cancel)
 
 ## License
 

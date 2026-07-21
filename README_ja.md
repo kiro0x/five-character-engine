@@ -150,7 +150,7 @@ MCP対応クライアントからは [five-mcp（PyPI）](https://pypi.org/proje
 
 - 開発の物語（note）：（公開後にリンク追加）
 - 技術解説（Zenn）：（公開後にリンク追加）
-- 同作者の道具：SkillGate（スキル読み飛ばし対策）／Memory Guardian（記憶の統治）／Sycophancy Cancel（迎合の出口検品）——いずれも公開準備中
+- 同作者の道具：[SkillGate](https://github.com/kiro0x/skillgate)（スキル読み飛ばし対策）／[Memory Guardian](https://github.com/kiro0x/memory-guardian)（記憶の統治）／[Sycophancy Cancel](https://github.com/kiro0x/sycophancy-cancel)（迎合の出口検品）
 
 ## ライセンス
 
