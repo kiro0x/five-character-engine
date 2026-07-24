@@ -5,7 +5,7 @@
 
 **生成は無料です。** [fiveengine.dev/form](https://fiveengine.dev/form) で4つの質問に答えるだけ——回数制限なし、カード登録なし。
 
-![比較デモ：素のAI vs FIVE](demo.gif)
+![比較デモ：素のAI vs FIVE](demo.png)
 
 ## その「キャラ崩壊」、こういうやつです
 

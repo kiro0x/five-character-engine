@@ -5,7 +5,7 @@
 
 **Generation is free.** Answer four questions at [fiveengine.dev/form](https://fiveengine.dev/form) — no limits, no card required.
 
-![Demo: plain AI vs FIVE](demo.gif)
+![Demo: plain AI vs FIVE](demo.png)
 
 ## "Character collapse" looks like this
 
