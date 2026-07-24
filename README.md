@@ -5,7 +5,7 @@
 
 **Generation is free.** Answer four questions at [fiveengine.dev/form](https://fiveengine.dev/form) — no limits, no card required.
 
-![Demo: plain AI vs FIVE](demo.png)
+![Demo: plain AI vs FIVE](demo_en.png)
 
 ## "Character collapse" looks like this
 
@@ -149,7 +149,7 @@ Honestly:
 
 ## Links
 
-Dev story: note (JP, coming) ／ Technical deep dives: Zenn (JP, coming) ／ By the same author: [SkillGate](https://github.com/kiro0x/skillgate), [Memory Guardian](https://github.com/kiro0x/memory-guardian), [Sycophancy Cancel](https://github.com/kiro0x/sycophancy-cancel)
+Dev story: [note (JP)](https://note.com/kiro0x) ／ Technical deep dives: Zenn (JP, coming) ／ X: [@dGSp4qNjMi16738](https://x.com/dGSp4qNjMi16738) ／ By the same author: [SkillGate](https://github.com/kiro0x/skillgate), [Memory Guardian](https://github.com/kiro0x/memory-guardian), [Sycophancy Cancel](https://github.com/kiro0x/sycophancy-cancel)
 
 ## License
 

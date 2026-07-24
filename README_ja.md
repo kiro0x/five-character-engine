@@ -148,8 +148,9 @@ MCP対応クライアントからは [five-mcp（PyPI）](https://pypi.org/proje
 
 ## 関連リンク
 
-- 開発の物語（note）：（公開後にリンク追加）
+- 開発の物語（note）：[note.com/kiro0x](https://note.com/kiro0x)
 - 技術解説（Zenn）：（公開後にリンク追加）
+- 作者のX：[@dGSp4qNjMi16738](https://x.com/dGSp4qNjMi16738)
 - 同作者の道具：[SkillGate](https://github.com/kiro0x/skillgate)（スキル読み飛ばし対策）／[Memory Guardian](https://github.com/kiro0x/memory-guardian)（記憶の統治）／[Sycophancy Cancel](https://github.com/kiro0x/sycophancy-cancel)（迎合の出口検品）
 
 ## ライセンス
